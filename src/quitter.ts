@@ -63,8 +63,12 @@ export class Quitter<T = void> {
         const first_time = this.handler === null;
         this.handler = handler;
 
-        if (first_time && this.is_quitting()) {
-            this.execute_quit();
+        if (this.is_quitting()) {
+            if (first_time) {
+                this.execute_quit();
+            } else {
+                console.log('[electron-quit-handler] Handler replaced after quit was requested; new handler will not execute.');
+            }
         }
     }
 

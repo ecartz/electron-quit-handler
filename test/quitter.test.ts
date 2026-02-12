@@ -63,6 +63,31 @@ describe('Quitter', () => {
 
     });
 
+    describe('handler replaced while quitting', () => {
+
+        it('should log a warning and not execute the new handler', async () => {
+            const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => {});
+            const handler1 = vi.fn().mockResolvedValue(undefined);
+            const handler2 = vi.fn().mockResolvedValue(undefined);
+
+            quitter.set_handler(handler1);
+            const quit_promise = quitter.quit();
+
+            quitter.set_handler(handler2);
+
+            await quit_promise;
+
+            expect(handler1).toHaveBeenCalledOnce();
+            expect(handler2).not.toHaveBeenCalled();
+            expect(consoleLog).toHaveBeenCalledWith(
+                '[electron-quit-handler] Handler replaced after quit was requested; new handler will not execute.'
+            );
+
+            consoleLog.mockRestore();
+        });
+
+    });
+
     describe('handler errors', () => {
 
         it('should reject quit promise when handler throws', async () => {
