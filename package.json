@@ -38,7 +38,14 @@
   "license": "LGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ecartz/electron-quit-handler.git"
+    "url": "git+https://github.com/ecartz/electron-quit-handler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ecartz/electron-quit-handler/issues"
+  },
+  "homepage": "https://github.com/ecartz/electron-quit-handler#readme",
+  "engines": {
+    "node": ">=14"
   },
   "peerDependencies": {
     "electron": ">=20.0.0"
