@@ -123,7 +123,7 @@ export class Electron_Quitter extends Quitter<void> {
         try {
             await this.quit();
             this.options.on_quit_complete();
-            app.quit();
+            app.exit(0);
         } catch (error) {
             this.options.on_quit_error(error);
             app.exit(1);
