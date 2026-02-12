@@ -98,9 +98,9 @@ Automatically handles:
 - Uncaught exceptions
 - Unhandled promise rejections
 
-### `bootstrap`
+### `bootstrap` (side-effect-only)
 
-Early error handlers for `uncaughtException` and `unhandledRejection`. Configure as a bundler entry point to catch parse errors, import errors, and runtime errors in your main file:
+Early error handlers for `uncaughtException` and `unhandledRejection`. This module exports nothing — importing it registers the handlers as a side effect. Configure as a bundler entry point to catch parse errors, import errors, and runtime errors in your main file:
 
 ```js
 // webpack.config.js
